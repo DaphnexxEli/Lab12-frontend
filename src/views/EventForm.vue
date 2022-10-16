@@ -56,9 +56,10 @@ export default {
         })
       ).then((response) => {
         //console.log(response)
-        console.log(response.map((r) => r.data))
-        console.log('finish upload file')
-      })
+      //   console.log(response.map((r) => r.data))
+      //   console.log('finish upload file')
+      // })
+      this.event.imageUrls = response.map((r) => r.data)
       EventService.saveEvent(this.event)
         .then((response) => {
           console.log(response)
@@ -75,6 +76,7 @@ export default {
         .catch(() => {
           this.$router.push('NetworkError')
         })
+      })
     },
     handleImages(files) {
       //console.log(files)
