@@ -8,21 +8,13 @@
         label="Category"
         class="field"
       />
-
       <h3>Name & describe your event</h3>
-
       <BaseInput v-model="event.title" type="text" label="Title" />
-
       <BaseInput v-model="event.description" type="text" label="Description" />
-
       <h3>Where is your event?</h3>
-
       <label>Location</label>
-
       <BaseInput v-model="event.location" type="text" label="Location" />
-
       <h3>Who is your organizer?</h3>
-
       <BaseSelect
         :options="GStore.organizers"
         v-model="event.organizer.id"
@@ -30,14 +22,11 @@
       />
       <h3>The image of the Event</h3>
       <UploadImages @changed="handleImages" />
-
       <button type="submit">Submit</button>
     </form>
-
     <pre>{{ event }}</pre>
   </div>
 </template>
-
 <script>
 import EventService from '@/services/EventService.js'
 import UploadImages from 'vue-upload-drop-images'
@@ -54,8 +43,9 @@ export default {
         description: '',
         location: '',
         organizer: { id: '', name: '' },
+        imageUrls:[]
+      },
       files: []
-      }
     }
   },
   methods: {
@@ -65,8 +55,8 @@ export default {
           return EventService.uploadFile(file)
         })
       ).then((response) => {
-       //console.log(response)
-       console.log(response.map((r) => r.data))
+        //console.log(response)
+        console.log(response.map((r) => r.data))
         console.log('finish upload file')
       })
       EventService.saveEvent(this.event)
@@ -85,7 +75,7 @@ export default {
         .catch(() => {
           this.$router.push('NetworkError')
         })
-      },
+    },
     handleImages(files) {
       //console.log(files)
       this.files = files
