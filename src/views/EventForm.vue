@@ -53,7 +53,8 @@ export default {
         title: '',
         description: '',
         location: '',
-        organizer: { id: '', name: '' }
+        organizer: { id: '', name: '' },
+      files:[]
       }
     }
   },
@@ -77,7 +78,8 @@ export default {
         })
       },
     handleImages(files) {
-      console.log(files)
+      //console.log(files)
+      this.files = files
     }
   }
 }
